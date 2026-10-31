@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080b14" />
+  <meta name="description" content="NEONVERSE — a futuristic personal dashboard." />
+  <title>NEONVERSE | Digital Space</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+    :root{--bg:#080b14;--panel:rgba(17,24,42,.78);--line:rgba(94,234,212,.18);--cyan:#55f6e2;--purple:#a78bfa;--muted:#8994aa;--white:#eef5ff}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 10%,#172447 0,transparent 38%),radial-gradient(ellipse at 85% 80%,#24133c 0,transparent 38%),var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif;padding:28px;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:linear-gradient(rgba(85,246,226,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(85,246,226,.12) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
+    .wrap{max-width:1120px;margin:auto;position:relative}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;gap:16px}.brand{font:800 20px Orbitron,sans-serif;letter-spacing:3px}.brand span{color:var(--cyan);text-shadow:0 0 18px var(--cyan)}.pill{border:1px solid var(--line);border-radius:30px;padding:9px 14px;color:var(--cyan);font-size:12px;letter-spacing:1px;background:#0c1722}
+    h1{font:700 clamp(30px,6vw,56px) Orbitron,sans-serif;margin:0 0 10px;letter-spacing:1px}.subtitle{color:var(--muted);margin:0 0 30px}.glow{color:var(--cyan);text-shadow:0 0 24px #55f6e277}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;backdrop-filter:blur(14px);box-shadow:0 12px 40px #0003;transition:.25s}.card:hover{transform:translateY(-4px);border-color:#55f6e277;box-shadow:0 12px 38px #55f6e21c}.wide{grid-column:span 2}.label{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:16px}.time{font:600 clamp(32px,5vw,52px) Orbitron,sans-serif;letter-spacing:2px}.date{color:var(--muted);margin-top:9px}.status{display:flex;align-items:center;gap:10px;font-size:17px}.dot{width:9px;height:9px;border-radius:50%;background:#5df2a5;box-shadow:0 0 14px #5df2a5}.metric{font:600 28px Orbitron,sans-serif;color:var(--cyan);margin-top:12px}.muted{color:var(--muted);font-size:13px;margin-top:8px}.timer{font:600 42px Orbitron,sans-serif;text-align:center;margin:12px 0 18px}.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}button{cursor:pointer;border:1px solid #55f6e255;color:var(--cyan);background:#10232c;padding:10px 17px;border-radius:10px;font-weight:600;transition:.2s}button:hover{background:#173943;box-shadow:0 0 18px #55f6e233}button.secondary{color:#c4b5fd;border-color:#a78bfa55;background:#211a35}.quote{font-size:19px;line-height:1.6;min-height:60px}.quote-by{color:var(--cyan);font-size:12px;letter-spacing:1px;margin-top:12px}.footer{text-align:center;color:#657087;font-size:11px;letter-spacing:2px;margin:30px 0 8px}
+    @media(max-width:760px){body{padding:20px}.grid{grid-template-columns:1fr}.wide{grid-column:span 1}.top{align-items:flex-start}.pill{font-size:10px}.time{font-size:36px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="top"><div class="brand">NEON<span>VERSE</span></div><div class="pill">● SYSTEM ONLINE</div></header>
+    <h1>YOUR DIGITAL <span class="glow">SPACE.</span></h1>
+    <p class="subtitle">A little universe to focus, create and explore.</p>
+    <section class="grid">
+      <article class="card wide"><div class="label">Local time // live feed</div><div class="time" id="clock">00:00:00</div><div class="date" id="date">Loading date...</div></article>
+      <article class="card"><div class="label">System status</div><div class="status"><span class="dot"></span> All systems normal</div><div class="metric">ONLINE</div><div class="muted">Your space is running smoothly.</div></article>
+      <article class="card"><div class="label">Focus session // 25 min</div><div class="timer" id="timer">25:00</div><div class="actions"><button id="start">START</button><button class="secondary" id="reset">RESET</button></div><div class="muted" id="timerStatus" style="text-align:center">Ready when you are.</div></article>
+      <article class="card wide"><div class="label">Daily transmission // motivation</div><div class="quote" id="quote">“Small steps every day lead to big changes.”</div><div class="quote-by" id="quoteBy">— NEONVERSE</div><div style="margin-top:17px"><button class="secondary" id="newQuote">NEW TRANSMISSION ↗</button></div></article>
+      <article class="card"><div class="label">Your mission</div><div style="font-size:18px;line-height:1.5">Think. Build.<br><span class="glow">Repeat.</span></div><div class="muted">Make today count.</div></article>
+    </section>
+    <footer class="footer">NEONVERSE // DESIGNED FOR THE NEXT GENERATION</footer>
+  </main>
+  <script>
+    const clock=document.getElementById('clock'),date=document.getElementById('date');
+    function updateClock(){const now=new Date();clock.textContent=now.toLocaleTimeString('en-GB');date.textContent=now.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});}
+    updateClock();setInterval(updateClock,1000);
+    let remaining=1500,interval=null;
+    const timer=document.getElementById('timer'),status=document.getElementById('timerStatus'),start=document.getElementById('start');
+    function renderTimer(){timer.textContent=String(Math.floor(remaining/60)).padStart(2,'0')+':'+String(remaining%60).padStart(2,'0');}
+    start.addEventListener('click',()=>{if(interval){clearInterval(interval);interval=null;start.textContent='RESUME';status.textContent='Paused. Take your time.';return;}start.textContent='PAUSE';status.textContent='Focus mode activated.';interval=setInterval(()=>{remaining--;renderTimer();if(remaining<=0){clearInterval(interval);interval=null;start.textContent='START';status.textContent='Session complete. Great work!';}},1000);});
+    document.getElementById('reset').addEventListener('click',()=>{clearInterval(interval);interval=null;remaining=1500;renderTimer();start.textContent='START';status.textContent='Timer reset. Ready when you are.';});
+    const quotes=[['“The secret of getting ahead is getting started.”','— MARK TWAIN'],['“Great things are done by a series of small things brought together.”','— VINCENT VAN GOGH'],['“It always seems impossible until it is done.”','— NELSON MANDELA'],['“Dream big. Start small. Act now.”','— NEONVERSE'],['“Your future is created by what you do today.”','— UNKNOWN']];
+    document.getElementById('newQuote').addEventListener('click',()=>{const q=quotes[Math.floor(Math.random()*quotes.length)];document.getElementById('quote').textContent=q[0];document.getElementById('quoteBy').textContent=q[1];});
+  </script>
+</body>
+</html>
