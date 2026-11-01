@@ -40,7 +40,75 @@
     function renderTimer(){timer.textContent=String(Math.floor(remaining/60)).padStart(2,'0')+':'+String(remaining%60).padStart(2,'0');}
     start.addEventListener('click',()=>{if(interval){clearInterval(interval);interval=null;start.textContent='RESUME';status.textContent='Paused. Take your time.';return;}start.textContent='PAUSE';status.textContent='Focus mode activated.';interval=setInterval(()=>{remaining--;renderTimer();if(remaining<=0){clearInterval(interval);interval=null;start.textContent='START';status.textContent='Session complete. Great work!';}},1000);});
     document.getElementById('reset').addEventListener('click',()=>{clearInterval(interval);interval=null;remaining=1500;renderTimer();start.textContent='START';status.textContent='Timer reset. Ready when you are.';});
-    const quotes=[['“The secret of getting ahead is getting started.”','— MARK TWAIN'],['“Great things are done by a series of small things brought together.”','— VINCENT VAN GOGH'],['“It always seems impossible until it is done.”','— NELSON MANDELA'],['“Dream big. Start small. Act now.”','— NEONVERSE'],['“Your future is created by what you do today.”','— UNKNOWN']];
+    const quotes=[['“The secret of getting ahead is getting started.”','— MARK TWAIN'],['“Great things are done by a series of small things brought together.”','— VINCENT VAN GOGH'],['“It always seems impossible until it is done.”','— NELSON MANDELA'],['“Dream big. Start small. Act now.”','— NEONVERSE'],['“Your future is created by what you do today.”','— UNKNOWN'const quotes = [
+["The secret of getting ahead is getting started.","— MARK TWAIN"],
+["Great things are done by a series of small things brought together.","— VINCENT VAN GOGH"],
+["It always seems impossible until it is done.","— NELSON MANDELA"],
+["Dream big. Start small. Act now.","— NEONVERSE"],
+["Your future is created by what you do today.","— UNKNOWN"],
+["Your next level begins where your excuses end.","— NEONVERSE"],
+["Build quietly. Let your progress make the noise.","— NEONVERSE"],
+["Every expert was once a beginner who kept going.","— NEONVERSE"],
+["Turn curiosity into skills and skills into impact.","— NEONVERSE"],
+["One focused hour can change your day.","— NEONVERSE"],
+["Make this moment useful.","— NEONVERSE"],
+["Your ideas deserve to become real.","— NEONVERSE"],
+["Progress is progress, even when it feels small.","— NEONVERSE"],
+["Learn something. Build something. Repeat tomorrow.","— NEONVERSE"],
+["The strongest code starts with courage.","— NEONVERSE"],
+["Big dreams need consistent little actions.","— NEONVERSE"],
+["Improve yourself, not your image.","— NEONVERSE"],
+["Your pace is valid. Keep moving forward.","— NEONVERSE"],
+["Make mistakes, learn, and keep creating.","— NEONVERSE"],
+["Discipline takes you places motivation cannot.","— NEONVERSE"],
+["Think beyond limits.","— NEONVERSE"],
+["Create a future your past self would admire.","— NEONVERSE"],
+["Stay curious. Keep learning.","— NEONVERSE"],
+["Don't compare your chapter one to chapter twenty.","— NEONVERSE"],
+["Every problem is an invitation to think differently.","— NEONVERSE"],
+["Small improvements create extraordinary results.","— NEONVERSE"],
+["Your keyboard can build your future.","— NEONVERSE"],
+["Start with what you know.","— NEONVERSE"],
+["Dreams become plans when you act.","— NEONVERSE"],
+["Be patient with the process.","— NEONVERSE"],
+["Great builders never stop learning.","— NEONVERSE"],
+["Focus on the next step.","— NEONVERSE"],
+["Make today better than yesterday.","— NEONVERSE"],
+["Your potential grows when you challenge yourself.","— NEONVERSE"],
+["Stay humble. Stay hungry. Stay consistent.","— NEONVERSE"],
+["Don't fear the blank page.","— NEONVERSE"],
+["Turn setbacks into comebacks.","— NEONVERSE"],
+["Build things that inspire people.","— NEONVERSE"],
+["Your future is a project. Keep improving it.","— NEONVERSE"],
+["Be the reason your ideas leave the notebook.","— NEONVERSE"],
+["Curiosity begins every breakthrough.","— NEONVERSE"],
+["Consistency has a quiet superpower.","— NEONVERSE"],
+["Replace I can't with I haven't learned yet.","— NEONVERSE"],
+["One day your practice will look like talent.","— NEONVERSE"],
+["Make your goals louder than distractions.","— NEONVERSE"],
+["Code. Create. Explore. Stay original.","— NEONVERSE"],
+["Build foundations that last.","— NEONVERSE"],
+["Every line of code teaches something.","— NEONVERSE"],
+["Your journey doesn't need permission.","— NEONVERSE"],
+["Stay focused on growth, not applause.","— NEONVERSE"],
+["Take the risk of being a beginner.","— NEONVERSE"],
+["Great futures are built in ordinary moments.","— NEONVERSE"],
+["Keep your standards high.","— NEONVERSE"],
+["Think clearly. Start boldly. Finish consistently.","— NEONVERSE"],
+["Your imagination is a blueprint.","— NEONVERSE"],
+["Be curious enough to ask and brave enough to try.","— NEONVERSE"],
+["Make your passion useful through practice.","— NEONVERSE"],
+["Learn from yesterday. Focus on today.","— NEONVERSE"],
+["Don't just scroll through ideas. Create one.","— NEONVERSE"],
+["Your limits are skills you haven't developed yet.","— NEONVERSE"],
+["The best project is the one you actually start.","— NEONVERSE"]
+];
+
+document.getElementById('newQuote').addEventListener('click',()=>{
+  const q = quotes[Math.floor(Math.random()*quotes.length)];
+  document.getElementById('quote').textContent = `“${q[0]}”`;
+  document.getElementById('quoteBy').textContent = q[1];
+});];
     document.getElementById('newQuote').addEventListener('click',()=>{const q=quotes[Math.floor(Math.random()*quotes.length)];document.getElementById('quote').textContent=q[0];document.getElementById('quoteBy').textContent=q[1];});
   </script>
 </body>
